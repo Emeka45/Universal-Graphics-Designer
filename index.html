@@ -1,1 +1,41 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Universal Graphics Designer</title><link rel="stylesheet" href="styles.css"></head><body><div class="app"><header><div class="brand"><span class="logo">U</span><div><small>UNIVERSAL</small><h1>Graphics Designer</h1></div></div><button id="download" class="primary">Export PNG</button></header><main><aside><h3>Design tools</h3><button data-tool="text">T Text</button><button data-tool="rect">▣ Shape</button><button data-tool="circle">● Circle</button><button data-tool="image">▧ Add image</button><hr><label>Canvas size<select id="size"><option value="1080x1080">Square 1080×1080</option><option value="1080x1350">Portrait 1080×1350</option><option value="1920x1080">Landscape 1920×1080</option></select></label><input id="img" type="file" accept="image/*" hidden></aside><section class="workspace"><div class="toolbar"><button id="clear">Clear</button><span id="hint">Tap a tool, then tap the canvas.</span></div><canvas id="canvas" width="1080" height="1080"></canvas></section></main></div><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10131a">
+<meta name="description" content="Universal Graphics Designer — a fast, mobile-friendly browser design studio.">
+<title>Universal Graphics Designer</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+<header class="topbar">
+  <div class="brand"><span class="logo" aria-hidden="true">U</span><div><span class="eyebrow">UNIVERSAL</span><strong>Graphics Designer</strong></div></div>
+  <div class="top-actions"><button class="icon-btn" id="undo" title="Undo (Ctrl/Cmd+Z)" aria-label="Undo">↶</button><button class="icon-btn" id="redo" title="Redo (Ctrl/Cmd+Y)" aria-label="Redo">↷</button><button class="btn ghost" id="saveProject">Save</button><button class="btn primary" id="exportBtn">Export</button></div>
+</header>
+<main class="studio">
+<aside class="left-panel panel" aria-label="Design tools">
+<div class="panel-title"><span>Tools</span><button id="helpBtn" class="mini-btn" title="Keyboard shortcuts">?</button></div>
+<div class="tool-grid">
+<button class="tool active" data-tool="select"><span>↖</span><small>Select</small></button><button class="tool" data-tool="text"><span>T</span><small>Text</small></button><button class="tool" data-tool="rect"><span>▰</span><small>Rectangle</small></button><button class="tool" data-tool="circle"><span>●</span><small>Circle</small></button><button class="tool" data-tool="line"><span>╱</span><small>Line</small></button><button class="tool" data-tool="image"><span>▧</span><small>Image</small></button>
+</div>
+<div class="panel-section"><label class="field-label" for="canvasSize">Canvas</label><select id="canvasSize"><option value="1080x1080">Square · 1080 × 1080</option><option value="1080x1350">Portrait · 1080 × 1350</option><option value="1080x1920">Story · 1080 × 1920</option><option value="1920x1080">Landscape · 1920 × 1080</option><option value="1200x628">Social · 1200 × 628</option><option value="1280x720">Video · 1280 × 720</option><option value="custom">Custom…</option></select></div>
+<div class="panel-section"><div class="panel-title small-title"><span>Templates</span></div><div class="template-list"><button data-template="poster">Bold Poster</button><button data-template="quote">Quote Card</button><button data-template="announcement">Announcement</button><button data-template="blank">Blank</button></div></div>
+<div class="panel-section tips"><strong>Quick tips</strong><p>Drag objects to move them. Double-tap text to edit. Use the layers panel to reorder artwork.</p></div>
+</aside>
+<section class="canvas-area">
+<div class="workspace-bar"><div class="workspace-tools"><button id="zoomOut" class="mini-btn">−</button><span id="zoomLabel">100%</span><button id="zoomIn" class="mini-btn">+</button><button id="fitCanvas" class="mini-btn" title="Fit canvas">Fit</button></div><div class="status" id="status">Select an object or choose a tool.</div><button id="clearAll" class="mini-btn danger">Clear</button></div>
+<div class="canvas-scroll" id="canvasScroll"><div class="canvas-wrap" id="canvasWrap"><canvas id="canvas" aria-label="Design canvas"></canvas><div class="empty-hint" id="emptyHint">Choose a tool, then tap the canvas</div></div></div>
+<div class="bottom-bar"><label class="color-chip">Background <input type="color" id="bgColor" value="#ffffff"></label><span id="sizeLabel">1080 × 1080</span><label class="zoom-range"><span>Zoom</span><input id="zoom" type="range" min="25" max="200" value="100"></label></div>
+</section>
+<aside class="right-panel panel" aria-label="Properties and layers">
+<section><div class="panel-title"><span>Properties</span><button id="deleteSelected" class="mini-btn danger" title="Delete selected">Delete</button></div><div id="properties" class="properties"><div class="empty-state">Select an object to edit its properties.</div></div></section>
+<section class="layers-section"><div class="panel-title"><span>Layers</span><button id="duplicateSelected" class="mini-btn" title="Duplicate selected">Duplicate</button></div><div id="layers" class="layers"></div></section>
+</aside>
+</main></div>
+<input id="imageInput" type="file" accept="image/*" hidden>
+<dialog id="exportDialog"><form method="dialog" class="dialog"><div class="panel-title"><strong>Export design</strong><button value="cancel" class="mini-btn">×</button></div><p>Choose a format for your finished design.</p><div class="export-grid"><button value="png" data-export="png" class="export-card"><strong>PNG</strong><small>Best for sharing and social media</small></button><button value="svg" data-export="svg" class="export-card"><strong>SVG</strong><small>Scalable vector artwork</small></button><button value="project" data-export="project" class="export-card"><strong>Project</strong><small>Re-open and continue editing</small></button></div></form></dialog>
+<dialog id="helpDialog"><div class="dialog"><div class="panel-title"><strong>Shortcuts</strong><button id="closeHelp" class="mini-btn">×</button></div><ul class="shortcut-list"><li><kbd>V</kbd> Select</li><li><kbd>T</kbd> Text</li><li><kbd>R</kbd> Rectangle</li><li><kbd>C</kbd> Circle</li><li><kbd>I</kbd> Image</li><li><kbd>Del</kbd> Delete</li><li><kbd>Ctrl/Cmd + Z</kbd> Undo</li><li><kbd>Ctrl/Cmd + Y</kbd> Redo</li><li><kbd>Ctrl/Cmd + D</kbd> Duplicate</li><li><kbd>Esc</kbd> Deselect</li></ul></div></dialog>
+<script src="app.js"></script>
+</body></html>
