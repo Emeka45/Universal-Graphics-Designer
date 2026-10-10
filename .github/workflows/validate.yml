@@ -31,8 +31,8 @@ jobs:
           if (!logo.includes('<svg') || !logo.includes('Universal Graphics Designer')) throw new Error('Logo SVG is invalid or unbranded.');
           JSON.parse(fs.readFileSync('manifest.webmanifest', 'utf8'));
           const app = fs.readFileSync('app.js', 'utf8');
-          for (const marker of ['blendMode', 'function exportRaster', 'gradient_${o.id}', 'shadow_${o.id}', 'state.transparent']) {
+          for (const marker of ['blendMode', 'function exportRaster', 'gradient_${o.id}', 'shadow_${o.id}', 'state.transparent', 'mode==="draw-path"', 'cropLeft', 'brightness(', 'o.type==="path"']) {
             if (!app.includes(marker)) throw new Error('Missing editor feature marker: ' + marker);
           }
-          console.log('App shell, export controls, transparency, blend modes, SVG effects, logo, manifest and offline worker checks passed.');
+          console.log('App shell, exports, pen paths, image crop/masks/adjustments, transparency, blend modes, SVG effects, logo, manifest and offline worker checks passed.');
           NODE
