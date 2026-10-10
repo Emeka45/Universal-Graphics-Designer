@@ -13,7 +13,9 @@ A mobile-friendly, browser-based graphics studio built with the Canvas API.
 - Image fit modes and visual filters
 - Undo/redo history
 - Copy, paste, duplicate and keyboard nudging
-- PNG, SVG and editable project export
+- PNG, JPEG, WebP, SVG and editable project export (raster exports exclude editor selection handles)
+- Custom canvas dimensions plus ready-made social, banner, story and video presets
+- Branded vector logo and installable web-app metadata
 - Project import with image assets preserved as data URLs
 - Local autosave-ready document model
 - Mobile-friendly responsive interface
@@ -24,9 +26,7 @@ Projects use a versioned JSON document model. Image assets are stored in the pro
 
 ## Next development targets
 
-- Richer shapes, gradients and shadows
-- Group/ungroup as a first-class document feature
-- Frames, icons and reusable design elements
-- More templates and brand kits
-- Stronger SVG fidelity and text layout
+- Full SVG effects parity and richer typography controls
+- Vector path editing and boolean shape operations
+- More reusable templates, frames and brand kits
 - Optional AI-assisted design generation
