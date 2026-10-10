@@ -14,6 +14,8 @@ A mobile-friendly, browser-based graphics studio built with the Canvas API.
 - Undo/redo history
 - Copy, paste, duplicate and keyboard nudging
 - PNG, JPEG, WebP, SVG and editable project export (raster exports exclude editor selection handles)
+- Transparent canvas background for PNG, WebP and SVG exports; JPEG export uses the selected solid background
+- Per-layer blend modes including Multiply, Screen, Overlay, Darken, Lighten and Difference
 - Custom canvas dimensions plus ready-made social, banner, story and video presets
 - Branded vector logo and installable web-app metadata
 - Project import with image assets preserved as data URLs
