@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="logo.svg">
 <link rel="manifest" href="manifest.webmanifest">
 <title>Universal Graphics Designer</title>
-<link rel="stylesheet" href="styles.css>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="app-shell">
@@ -42,4 +42,5 @@
 <dialog id="exportDialog"><form method="dialog" class="dialog"><div class="panel-title"><strong>Export design</strong><button value="cancel" class="mini-btn">×</button></div><p>Choose a format for your finished design.</p><div class="export-grid"><button value="png" data-export="png" class="export-card"><strong>PNG</strong><small>Sharp, lossless image</small></button><button value="jpg" data-export="jpg" class="export-card"><strong>JPEG</strong><small>Smaller photo-friendly file</small></button><button value="webp" data-export="webp" class="export-card"><strong>WebP</strong><small>Compact modern web image</small></button><button value="svg" data-export="svg" class="export-card"><strong>SVG</strong><small>Scalable vector artwork</small></button><button value="project" data-export="project" class="export-card"><strong>Project</strong><small>Re-open and continue editing</small></button></div></form></dialog>
 <dialog id="helpDialog"><div class="dialog"><div class="panel-title"><strong>Shortcuts</strong><button id="closeHelp" class="mini-btn">×</button></div><ul class="shortcut-list"><li><kbd>V</kbd> Select</li><li><kbd>T</kbd> Text</li><li><kbd>R</kbd> Rectangle</li><li><kbd>C</kbd> Circle</li><li><kbd>I</kbd> Image</li><li><kbd>Del</kbd> Delete</li><li><kbd>Ctrl/Cmd + Z</kbd> Undo</li><li><kbd>Ctrl/Cmd + Y</kbd> Redo</li><li><kbd>Ctrl/Cmd + D</kbd> Duplicate</li><li><kbd>Shift + click</kbd> Multi-select</li><li><kbd>Ctrl/Cmd + C</kbd> Copy</li><li><kbd>Ctrl/Cmd + V</kbd> Paste</li><li><kbd>Esc</kbd> Deselect</li></ul></div></dialog>
 <script src="app.js"></script>
+<script>if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}</script>
 </body></html>
