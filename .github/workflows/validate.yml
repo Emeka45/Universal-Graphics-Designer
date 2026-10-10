@@ -12,4 +12,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node --check app.js
+      - name: Check JavaScript syntax
+        run: |
+          node --check app.js
+          node --check sw.js
+      - name: Smoke-check app shell and branded assets
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          for (const file of ['styles.css', 'app.js', 'logo.svg', 'manifest.webmanifest', 'sw.js']) {
+            if (!fs.existsSync(file)) throw new Error('Missing app asset: ' + file);
+          }
+          for (const marker of ['href="styles.css"', 'src="logo.svg"', 'href="manifest.webmanifest"', 'data-export="png"', 'data-export="jpg"', 'data-export="webp"', 'data-export="svg"', 'data-export="project"']) {
+            if (!html.includes(marker)) throw new Error('Missing HTML feature marker: ' + marker);
+          }
+          const logo = fs.readFileSync('logo.svg', 'utf8');
+          if (!logo.includes('<svg') || !logo.includes('Universal Graphics Designer')) throw new Error('Logo SVG is invalid or unbranded.');
+          JSON.parse(fs.readFileSync('manifest.webmanifest', 'utf8'));
+          console.log('App shell, export controls, logo, manifest and offline worker checks passed.');
+          NODE
