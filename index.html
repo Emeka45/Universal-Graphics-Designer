@@ -4,14 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#10131a">
-<meta name="description" content="Universal Graphics Designer — a fast, mobile-friendly browser design studio.">
+<meta name="description" content="Universal Graphics Designer — a fast, mobile-friendly browser design studio for posters, thumbnails, social posts and more.">
+<meta name="application-name" content="Universal Graphics Designer">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="apple-touch-icon" href="logo.svg">
+<link rel="manifest" href="manifest.webmanifest">
 <title>Universal Graphics Designer</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css>
 </head>
 <body>
 <div class="app-shell">
 <header class="topbar">
-  <div class="brand"><span class="logo" aria-hidden="true">U</span><div><span class="eyebrow">UNIVERSAL</span><strong>Graphics Designer</strong></div></div>
+  <div class="brand"><img class="logo" src="logo.svg" alt="Universal Graphics Designer logo" width="44" height="44"><div><span class="eyebrow">UNIVERSAL</span><strong>Graphics Designer</strong></div></div>
   <div class="top-actions"><button class="icon-btn" id="undo" title="Undo (Ctrl/Cmd+Z)" aria-label="Undo">↶</button><button class="icon-btn" id="redo" title="Redo (Ctrl/Cmd+Y)" aria-label="Redo">↷</button><button class="btn ghost" id="saveProject">Save</button><button class="btn ghost" id="openProject">Open</button><button class="btn primary" id="exportBtn">Export</button></div>
 </header>
 <main class="studio">
@@ -20,7 +24,7 @@
 <div class="tool-grid">
 <button class="tool active" data-tool="select"><span>↖</span><small>Select</small></button><button class="tool" data-tool="text"><span>T</span><small>Text</small></button><button class="tool" data-tool="rect"><span>▰</span><small>Rectangle</small></button><button class="tool" data-tool="circle"><span>●</span><small>Circle</small></button><button class="tool" data-tool="line"><span>╱</span><small>Line</small></button><button class="tool" data-tool="triangle"><span>△</span><small>Triangle</small></button><button class="tool" data-tool="star"><span>★</span><small>Star</small></button><button class="tool" data-tool="arrow"><span>➜</span><small>Arrow</small></button><button class="tool" data-tool="diamond"><span>◇</span><small>Diamond</small></button><button class="tool" data-tool="speech"><span>▱</span><small>Callout</small></button><button class="tool" data-tool="image"><span>▧</span><small>Image</small></button>
 </div>
-<div class="panel-section"><label class="field-label" for="canvasSize">Canvas</label><select id="canvasSize"><option value="1080x1080">Square · 1080 × 1080</option><option value="1080x1350">Portrait · 1080 × 1350</option><option value="1080x1920">Story · 1080 × 1920</option><option value="1920x1080">Landscape · 1920 × 1080</option><option value="1200x628">Social · 1200 × 628</option><option value="1280x720">Video · 1280 × 720</option><option value="custom">Custom…</option></select></div>
+<div class="panel-section"><label class="field-label" for="canvasSize">Canvas</label><select id="canvasSize"><option value="1080x1080">Square · 1080 × 1080</option><option value="1080x1350">Portrait · 1080 × 1350</option><option value="1080x1920">Story · 1080 × 1920</option><option value="1920x1080">Landscape · 1920 × 1080</option><option value="1200x628">Social / Link preview · 1200 × 628</option><option value="1280x720">Video · 1280 × 720</option><option value="1080x566">Landscape post · 1080 × 566</option><option value="1080x1440">Pinterest pin · 1080 × 1440</option><option value="1584x396">LinkedIn banner · 1584 × 396</option><option value="820x312">Facebook cover · 820 × 312</option><option value="custom">Custom…</option></select></div>
 <div class="panel-section"><div class="panel-title small-title"><span>Templates</span></div><div class="template-list"><button data-template="poster">Bold Poster</button><button data-template="quote">Quote Card</button><button data-template="announcement">Announcement</button><button data-template="thumbnail">Video Thumbnail</button><button data-template="business">Business Card</button><button data-template="sale">Sale Promo</button><button data-template="blank">Blank</button></div></div><div class="panel-section"><div class="panel-title small-title"><span>Quick elements</span></div><div class="template-list"><button data-element="badge">✓ Verified badge</button><button data-element="cta">Call-to-action button</button><button data-element="burst">Starburst sticker</button><button data-element="quote">Quote callout</button></div></div>
 <div class="panel-section tips"><strong>Quick tips</strong><p>Drag objects to move them. Double-tap text to edit. Use the layers panel to reorder artwork.</p></div>
 </aside>
@@ -35,7 +39,7 @@
 </aside>
 </main></div>
 <input id="imageInput" type="file" accept="image/*" hidden><input id="projectInput" type="file" accept=".json,application/json" hidden>
-<dialog id="exportDialog"><form method="dialog" class="dialog"><div class="panel-title"><strong>Export design</strong><button value="cancel" class="mini-btn">×</button></div><p>Choose a format for your finished design.</p><div class="export-grid"><button value="png" data-export="png" class="export-card"><strong>PNG</strong><small>Best for sharing and social media</small></button><button value="svg" data-export="svg" class="export-card"><strong>SVG</strong><small>Scalable vector artwork</small></button><button value="project" data-export="project" class="export-card"><strong>Project</strong><small>Re-open and continue editing</small></button></div></form></dialog>
+<dialog id="exportDialog"><form method="dialog" class="dialog"><div class="panel-title"><strong>Export design</strong><button value="cancel" class="mini-btn">×</button></div><p>Choose a format for your finished design.</p><div class="export-grid"><button value="png" data-export="png" class="export-card"><strong>PNG</strong><small>Sharp, lossless image</small></button><button value="jpg" data-export="jpg" class="export-card"><strong>JPEG</strong><small>Smaller photo-friendly file</small></button><button value="webp" data-export="webp" class="export-card"><strong>WebP</strong><small>Compact modern web image</small></button><button value="svg" data-export="svg" class="export-card"><strong>SVG</strong><small>Scalable vector artwork</small></button><button value="project" data-export="project" class="export-card"><strong>Project</strong><small>Re-open and continue editing</small></button></div></form></dialog>
 <dialog id="helpDialog"><div class="dialog"><div class="panel-title"><strong>Shortcuts</strong><button id="closeHelp" class="mini-btn">×</button></div><ul class="shortcut-list"><li><kbd>V</kbd> Select</li><li><kbd>T</kbd> Text</li><li><kbd>R</kbd> Rectangle</li><li><kbd>C</kbd> Circle</li><li><kbd>I</kbd> Image</li><li><kbd>Del</kbd> Delete</li><li><kbd>Ctrl/Cmd + Z</kbd> Undo</li><li><kbd>Ctrl/Cmd + Y</kbd> Redo</li><li><kbd>Ctrl/Cmd + D</kbd> Duplicate</li><li><kbd>Shift + click</kbd> Multi-select</li><li><kbd>Ctrl/Cmd + C</kbd> Copy</li><li><kbd>Ctrl/Cmd + V</kbd> Paste</li><li><kbd>Esc</kbd> Deselect</li></ul></div></dialog>
 <script src="app.js"></script>
 </body></html>
