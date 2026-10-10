@@ -18,6 +18,7 @@ A mobile-friendly, browser-based graphics studio built with the Canvas API.
 - Per-layer blend modes including Multiply, Screen, Overlay, Darken, Lighten and Difference
 - Custom canvas dimensions plus ready-made social, banner, story and video presets
 - Branded vector logo and installable web-app metadata
+- Offline app-shell caching with network-first updates when online
 - Project import with image assets preserved as data URLs
 - Local autosave-ready document model
 - Mobile-friendly responsive interface
