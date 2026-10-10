@@ -10,7 +10,9 @@ A mobile-friendly, browser-based graphics studio built with the Canvas API.
 - Multi-selection and group movement
 - Layers with reordering, visibility and locking
 - Typography controls including font, weight, alignment, line height and letter spacing
-- Image fit modes and visual filters
+- Image crop controls, rectangular/rounded/ellipse masks, fit modes, brightness, contrast, saturation, blur and visual filters
+- Freehand pen drawing with editable path objects
+- Underlined text styling and expanded type controls
 - Undo/redo history
 - Copy, paste, duplicate and keyboard nudging
 - PNG, JPEG, WebP, SVG and editable project export (raster exports exclude editor selection handles)
@@ -31,5 +33,6 @@ Projects use a versioned JSON document model. Image assets are stored in the pro
 
 - Full SVG effects parity and richer typography controls
 - Vector path editing and boolean shape operations
+- Vector path node editing and boolean shape operations
 - More reusable templates, frames and brand kits
-- Optional AI-assisted design generation
+- Optional AI-assisted design generation (requires a secure service/API integration)
