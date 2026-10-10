@@ -24,7 +24,7 @@ jobs:
           for (const file of ['styles.css', 'app.js', 'logo.svg', 'manifest.webmanifest', 'sw.js']) {
             if (!fs.existsSync(file)) throw new Error('Missing app asset: ' + file);
           }
-          for (const marker of ['href="styles.css"', 'src="logo.svg"', 'href="manifest.webmanifest"', 'data-export="png"', 'data-export="jpg"', 'data-export="webp"', 'data-export="svg"', 'data-export="project"']) {
+          for (const marker of ['href="styles.css"', 'src="logo.svg"', 'href="manifest.webmanifest"', 'data-export="png"', 'data-export="jpg"', 'data-export="webp"', 'data-export="svg"', 'data-export="project"', 'id="transparentBg"']) {
             if (!html.includes(marker)) throw new Error('Missing HTML feature marker: ' + marker);
           }
           const logo = fs.readFileSync('logo.svg', 'utf8');
