@@ -37,12 +37,12 @@ jobs:
             if (!app.includes(marker)) throw new Error('Missing editor feature marker: ' + marker);
           }
           const pro = fs.readFileSync('pro-tools.js', 'utf8');
-          for (const marker of ['Precision', 'precision-grid', 'safe-area', 'ruler', '#centerSelected', '#alignCenter']) {
-            if (!pro.includes(marker)) throw new Error('Missing precision toolkit marker: ' + marker);
+          for (const marker of ['Precision', 'precision-grid', 'safe-area', 'ruler', '#centerSelected', '#alignCenter', 'Typography presets', 'fontFamily', 'WCAG AA']) {
+            if (!pro.includes(marker)) throw new Error('Missing professional toolkit marker: ' + marker);
           }
           const css = fs.readFileSync('styles.css', 'utf8');
-          for (const marker of ['.pro-tools', '.precision-grid', '.safe-area', '.ruler']) {
-            if (!css.includes(marker)) throw new Error('Missing precision CSS marker: ' + marker);
+          for (const marker of ['.pro-tools', '.precision-grid', '.safe-area', '.ruler', '.pro-menu']) {
+            if (!css.includes(marker)) throw new Error('Missing precision/typography CSS marker: ' + marker);
           }
-          console.log('App shell, exports, vector editor, precision grid, safe area, rulers, alignment shortcuts, image tools, transparency, blend modes, SVG effects, logo, manifest and offline worker checks passed.');
+          console.log('App shell, exports, vector editor, precision toolkit, typography presets, contrast checker, image tools, transparency, blend modes, SVG effects, logo, manifest and offline worker checks passed.');
           NODE
