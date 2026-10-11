@@ -16,15 +16,17 @@ jobs:
         run: |
           node --check app.js
           node --check sw.js
+          node --check vector-editor.js
+          node --check pro-tools.js
       - name: Smoke-check app shell and branded assets
         run: |
           node <<'NODE'
           const fs = require('node:fs');
           const html = fs.readFileSync('index.html', 'utf8');
-          for (const file of ['styles.css', 'app.js', 'logo.svg', 'manifest.webmanifest', 'sw.js']) {
+          for (const file of ['styles.css', 'app.js', 'vector-editor.js', 'pro-tools.js', 'logo.svg', 'manifest.webmanifest', 'sw.js']) {
             if (!fs.existsSync(file)) throw new Error('Missing app asset: ' + file);
           }
-          for (const marker of ['href="styles.css"', 'src="logo.svg"', 'href="manifest.webmanifest"', 'data-export="png"', 'data-export="jpg"', 'data-export="webp"', 'data-export="svg"', 'data-export="project"', 'id="transparentBg"']) {
+          for (const marker of ['href="styles.css"', 'src="logo.svg"', 'href="manifest.webmanifest"', 'src="vector-editor.js"', 'src="pro-tools.js"', 'data-export="png"', 'data-export="jpg"', 'data-export="webp"', 'data-export="svg"', 'data-export="project"', 'id="transparentBg"']) {
             if (!html.includes(marker)) throw new Error('Missing HTML feature marker: ' + marker);
           }
           const logo = fs.readFileSync('logo.svg', 'utf8');
@@ -34,5 +36,13 @@ jobs:
           for (const marker of ['blendMode', 'function exportRaster', 'gradient_${o.id}', 'shadow_${o.id}', 'state.transparent', 'mode==="draw-path"', 'cropLeft', 'brightness(', 'o.type==="path"']) {
             if (!app.includes(marker)) throw new Error('Missing editor feature marker: ' + marker);
           }
-          console.log('App shell, exports, pen paths, image crop/masks/adjustments, transparency, blend modes, SVG effects, logo, manifest and offline worker checks passed.');
+          const pro = fs.readFileSync('pro-tools.js', 'utf8');
+          for (const marker of ['Precision', 'precision-grid', 'safe-area', 'ruler', '#centerSelected', '#alignCenter']) {
+            if (!pro.includes(marker)) throw new Error('Missing precision toolkit marker: ' + marker);
+          }
+          const css = fs.readFileSync('styles.css', 'utf8');
+          for (const marker of ['.pro-tools', '.precision-grid', '.safe-area', '.ruler']) {
+            if (!css.includes(marker)) throw new Error('Missing precision CSS marker: ' + marker);
+          }
+          console.log('App shell, exports, vector editor, precision grid, safe area, rulers, alignment shortcuts, image tools, transparency, blend modes, SVG effects, logo, manifest and offline worker checks passed.');
           NODE
