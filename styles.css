@@ -4,3 +4,6 @@
 .layer{cursor:grab;touch-action:pan-y}.layer:active{cursor:grabbing}.layer.dragging{opacity:.42}.layer.drop-target{outline:2px solid var(--accent);outline-offset:-2px}.layer-name{cursor:text;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}.layer button{flex:0 0 auto}.layer button[title="Rename layer"]{color:#aab5c6}
 
 .ruler{overflow:visible}.ruler-number{position:absolute;top:1px;font:8px/1 system-ui,sans-serif;color:#d4dbea;text-shadow:0 1px 2px #000;white-space:nowrap;pointer-events:none}.ruler-number-y{left:1px;transform:rotate(-90deg);transform-origin:top left;margin-top:4px}
+
+/* Brand kit panel polish */
+.brand-kit-menu .brand-kit-label,.brand-kit-add>label{display:block;font-size:10px;font-weight:750;color:#aeb7c6;margin:7px 0 5px}.brand-kit-menu .brand-kit-actions{display:grid;gap:6px;margin-top:9px}.brand-kit-menu .brand-kit-actions button{width:100%;min-height:32px;height:auto;white-space:normal}.brand-kit-menu .brand-kit-help{font-size:10px;line-height:1.5;color:#8e99aa;margin:10px 0 0}.brand-kit-menu .brand-kit-add{display:grid;grid-template-columns:1fr auto;align-items:end;gap:7px}.brand-kit-menu .brand-kit-add label{grid-column:1/-1}
