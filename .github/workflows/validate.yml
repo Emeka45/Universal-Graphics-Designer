@@ -18,19 +18,20 @@ jobs:
           node --check sw.js
           node --check vector-editor.js
           node --check pro-tools.js
+          node --check ai-assistant.js
       - name: Smoke-check app shell and branded assets
         run: |
           node <<'NODE'
           const fs = require('node:fs');
           const html = fs.readFileSync('index.html', 'utf8');
-          for (const file of ['styles.css', 'app.js', 'vector-editor.js', 'pro-tools.js', 'logo.svg', 'manifest.webmanifest', 'sw.js']) {
+          for (const file of ['styles.css', 'app.js', 'vector-editor.js', 'pro-tools.js', 'ai-assistant.js', 'logo.svg', 'manifest.webmanifest', 'sw.js']) {
             if (!fs.existsSync(file)) throw new Error('Missing app asset: ' + file);
           }
-          for (const marker of ['href="styles.css"', 'src="logo.svg"', 'href="manifest.webmanifest"', 'src="vector-editor.js"', 'src="pro-tools.js"', 'data-export="png"', 'data-export="png2x"', 'data-export="png3x"', 'data-export="pdf"', 'data-export="jpg"', 'data-export="webp"', 'data-export="svg"', 'data-export="project"', 'data-template="certificate"', 'data-template="youtube"', 'data-template="instagram"', 'data-template="invitation"', 'data-template="product"', 'id="transparentBg"']) {
+          for (const marker of ['href="styles.css"', 'src="logo.svg"', 'href="manifest.webmanifest"', 'src="vector-editor.js"', 'src="pro-tools.js"', 'src="ai-assistant.js"', 'data-export="png"', 'data-export="png2x"', 'data-export="png3x"', 'data-export="pdf"', 'data-export="jpg"', 'data-export="webp"', 'data-export="svg"', 'data-export="project"', 'data-template="certificate"', 'data-template="youtube"', 'data-template="instagram"', 'data-template="invitation"', 'data-template="product"', 'id="transparentBg"']) {
             if (!html.includes(marker)) throw new Error('Missing HTML feature marker: ' + marker);
           }
           const sw = fs.readFileSync('sw.js', 'utf8');
-          for (const marker of ['./vector-editor.js', './pro-tools.js', 'ugd-shell-v3']) {
+          for (const marker of ['./vector-editor.js', './pro-tools.js', './ai-assistant.js', 'ugd-shell-v4']) {
             if (!sw.includes(marker)) throw new Error('Offline shell missing editor asset/cache marker: ' + marker);
           }
           const logo = fs.readFileSync('logo.svg', 'utf8');
@@ -41,6 +42,9 @@ jobs:
             if (!app.includes(marker)) throw new Error('Missing editor feature marker: ' + marker);
           }
           const pro = fs.readFileSync('pro-tools.js', 'utf8');
+          const ai = fs.readFileSync('ai-assistant.js', 'utf8');
+          for (const marker of ['createPromptDesign', 'analyzeDesign', 'applyPalette']) { if (!ai.includes(marker)) throw new Error('Missing AI assistant marker: ' + marker); }
+          for (const marker of ['aiAssistantBtn', 'aiAssistantDialog', 'aiGenerate', 'aiAnalyse', 'aiPalette']) { if (!html.includes(marker)) throw new Error('Missing AI UI marker: ' + marker); }
           for (const marker of ['Precision', 'precision-grid', 'safe-area', 'ruler', '#centerSelected', '#alignCenter', 'Typography presets', 'fontFamily', 'WCAG AA', 'function updateRulerLabels', 'Reusable assets', 'saveCurrentAsset']) {
             if (!pro.includes(marker)) throw new Error('Missing professional toolkit marker: ' + marker);
           }
