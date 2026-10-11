@@ -29,6 +29,10 @@ jobs:
           for (const marker of ['href="styles.css"', 'src="logo.svg"', 'href="manifest.webmanifest"', 'src="vector-editor.js"', 'src="pro-tools.js"', 'data-export="png"', 'data-export="png2x"', 'data-export="png3x"', 'data-export="pdf"', 'data-export="jpg"', 'data-export="webp"', 'data-export="svg"', 'data-export="project"', 'data-template="certificate"', 'data-template="youtube"', 'data-template="instagram"', 'data-template="invitation"', 'data-template="product"', 'id="transparentBg"']) {
             if (!html.includes(marker)) throw new Error('Missing HTML feature marker: ' + marker);
           }
+          const sw = fs.readFileSync('sw.js', 'utf8');
+          for (const marker of ['./vector-editor.js', './pro-tools.js', 'ugd-shell-v3']) {
+            if (!sw.includes(marker)) throw new Error('Offline shell missing editor asset/cache marker: ' + marker);
+          }
           const logo = fs.readFileSync('logo.svg', 'utf8');
           if (!logo.includes('<svg') || !logo.includes('Universal Graphics Designer')) throw new Error('Logo SVG is invalid or unbranded.');
           JSON.parse(fs.readFileSync('manifest.webmanifest', 'utf8'));
