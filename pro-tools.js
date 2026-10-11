@@ -41,7 +41,7 @@ addButton(wrap,"Assets",()=>{assetMenu.style.display=assetMenu.style.display==="
 assetMenu.querySelector("#closeAssets").addEventListener("click",()=>assetMenu.style.display="none");
 assetMenu.querySelector("#saveCurrentAsset").addEventListener("click",()=>{const api=window.UGDStudio;if(!api){alert("Asset tools are not ready yet.");return}const name=prompt("Name this reusable asset","My design element");if(name===null)return;if(api.saveAsset(name)){renderAssets();alert("Reusable asset saved on this device.")}});
 bar.insertBefore(wrap,bar.querySelector(".status"));bar.append(menu,brandMenu,assetMenu);renderBrand();
-document.addEventListener("click",e=>{if(!wrap.contains(e.target)&&!menu.contains(e.target)&&!brandMenu.contains(e.target)){menu.classList.remove("show");brandMenu.style.display="none";assetMenu.style.display="none"}});
+document.addEventListener("click",e=>{if(!wrap.contains(e.target)&&!menu.contains(e.target)&&!brandMenu.contains(e.target)&&!assetMenu.contains(e.target)){menu.classList.remove("show");brandMenu.style.display="none";assetMenu.style.display="none"}});
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();
