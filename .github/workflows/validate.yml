@@ -26,22 +26,22 @@ jobs:
           for (const file of ['styles.css', 'app.js', 'vector-editor.js', 'pro-tools.js', 'logo.svg', 'manifest.webmanifest', 'sw.js']) {
             if (!fs.existsSync(file)) throw new Error('Missing app asset: ' + file);
           }
-          for (const marker of ['href="styles.css"', 'src="logo.svg"', 'href="manifest.webmanifest"', 'src="vector-editor.js"', 'src="pro-tools.js"', 'data-export="png"', 'data-export="png2x"', 'data-export="png3x"', 'data-export="pdf"', 'data-export="jpg"', 'data-export="webp"', 'data-export="svg"', 'data-export="project"', 'id="transparentBg"']) {
+          for (const marker of ['href="styles.css"', 'src="logo.svg"', 'href="manifest.webmanifest"', 'src="vector-editor.js"', 'src="pro-tools.js"', 'data-export="png"', 'data-export="png2x"', 'data-export="png3x"', 'data-export="pdf"', 'data-export="jpg"', 'data-export="webp"', 'data-export="svg"', 'data-export="project"', 'data-template="certificate"', 'data-template="youtube"', 'data-template="instagram"', 'data-template="invitation"', 'data-template="product"', 'id="transparentBg"']) {
             if (!html.includes(marker)) throw new Error('Missing HTML feature marker: ' + marker);
           }
           const logo = fs.readFileSync('logo.svg', 'utf8');
           if (!logo.includes('<svg') || !logo.includes('Universal Graphics Designer')) throw new Error('Logo SVG is invalid or unbranded.');
           JSON.parse(fs.readFileSync('manifest.webmanifest', 'utf8'));
           const app = fs.readFileSync('app.js', 'utf8');
-          for (const marker of ['blendMode', 'function exportRaster', 'function exportRasterScale', 'function exportPDF', 'outlineWidth', 'glowBlur', 'renameLayer', 'reorderLayer', 'gradient_${o.id}', 'shadow_${o.id}', 'state.transparent', 'mode==="draw-path"', 'cropLeft', 'brightness(', 'o.type==="path"']) {
+          for (const marker of ['blendMode', 'function exportRaster', 'function exportRasterScale', 'function exportPDF', 'outlineWidth', 'glowBlur', 'renameLayer', 'reorderLayer', 'function snapMove', 'window.UGDStudio', 'saveAsset:function', 'insertAsset:function', 'gradient_${o.id}', 'shadow_${o.id}', 'state.transparent', 'mode==="draw-path"', 'cropLeft', 'brightness(', 'o.type==="path"']) {
             if (!app.includes(marker)) throw new Error('Missing editor feature marker: ' + marker);
           }
           const pro = fs.readFileSync('pro-tools.js', 'utf8');
-          for (const marker of ['Precision', 'precision-grid', 'safe-area', 'ruler', '#centerSelected', '#alignCenter', 'Typography presets', 'fontFamily', 'WCAG AA']) {
+          for (const marker of ['Precision', 'precision-grid', 'safe-area', 'ruler', '#centerSelected', '#alignCenter', 'Typography presets', 'fontFamily', 'WCAG AA', 'function updateRulerLabels', 'Reusable assets', 'saveCurrentAsset']) {
             if (!pro.includes(marker)) throw new Error('Missing professional toolkit marker: ' + marker);
           }
           const css = fs.readFileSync('styles.css', 'utf8');
-          for (const marker of ['.pro-tools', '.precision-grid', '.safe-area', '.ruler', '.pro-menu']) {
+          for (const marker of ['.pro-tools', '.precision-grid', '.safe-area', '.ruler', '.ruler-number', '.layer.drop-target', '.pro-menu']) {
             if (!css.includes(marker)) throw new Error('Missing precision/typography CSS marker: ' + marker);
           }
           console.log('App shell, standard/high-resolution exports, print-to-PDF, layer naming/reordering, text outline/glow, vector editor, precision toolkit, typography presets, contrast checker, image tools, transparency, blend modes, logo, manifest and offline worker checks passed.');
