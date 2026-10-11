@@ -10,7 +10,7 @@ function contrastTool(){const fill=prop("fill");if(!fill||fill.type!=="color"){a
 const BRAND_KEY="ugd-brand-kit-v1";
 function readBrand(){try{const d=JSON.parse(localStorage.getItem(BRAND_KEY)||"{}");return{ name:d.name||"My Brand",colors:Array.isArray(d.colors)?d.colors.filter(c=>/^#[0-9a-f]{6}$/i.test(c)).slice(0,24):["#7c5cff","#25c6da","#111827","#ffffff","#f97316","#ec4899"]}}catch(e){return{name:"My Brand",colors:["#7c5cff","#25c6da","#111827","#ffffff","#f97316","#ec4899"]}}}
 function saveBrand(b){try{localStorage.setItem(BRAND_KEY,JSON.stringify(b));return true}catch(e){alert("Could not save the brand kit on this device. Check browser storage.");return false}}
-function init(){const bar=document.querySelector(".workspace-bar");if(!bar||document.querySelector("#proTools"))return;const wrap=document.createElement("div");wrap.id="proTools";wrap.className="pro-tools";const label=document.createElement("span");label.className="pro-tools-label";label.textContent="Studio";wrap.appendChild(label);
+function init(){const bar=document.querySelector(".workspace-bar");if(!bar||document.querySelector("#proTools"))return;const wrap=document.createElement("div");wrap.id="proTools";wrap.className="pro-tools";const label=document.createElement("span");label.className="pro-tools-label";label.textContent="Precision";wrap.appendChild(label);
 const canvasWrap=$("#canvasWrap");let grid=false,safe=false,rulers=false;
 const gridLayer=document.createElement("div");gridLayer.className="precision-grid";gridLayer.setAttribute("aria-hidden","true");canvasWrap?.appendChild(gridLayer);
 const safeLayer=document.createElement("div");safeLayer.className="safe-area";safeLayer.setAttribute("aria-hidden","true");canvasWrap?.appendChild(safeLayer);
